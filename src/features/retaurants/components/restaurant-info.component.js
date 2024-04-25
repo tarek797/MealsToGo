@@ -1,12 +1,11 @@
-import { StyleSheet } from "react-native";
-import { Avatar, Button, Card, Text } from "react-native-paper";
+import { Card, Text } from "react-native-paper";
 import styled from "styled-components/native";
 
 const RestaurantCard = styled(Card)`
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 const RestaurantCardCover = styled(Card.Cover)`
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.bg.primary};
   padding: 20px;
 `;
 
