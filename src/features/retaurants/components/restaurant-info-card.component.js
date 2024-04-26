@@ -8,7 +8,10 @@ const RestaurantCardCover = styled(Card.Cover)`
   background-color: ${(props) => props.theme.colors.bg.primary};
   padding: ${(props) => props.theme.space.at(3)};
 `;
-
+const Title = styled(Text)`
+  font-family: ${(props) => props.theme.fonts.body};
+  color: ${(props) => props.theme.colors.ui.primary};
+`;
 export const RestaurantInfoCard = ({ retaurant = {} }) => {
   const {
     name = "some restaurant",
@@ -25,7 +28,7 @@ export const RestaurantInfoCard = ({ retaurant = {} }) => {
     <RestaurantCard elevation={5}>
       <RestaurantCardCover key={name} source={{ uri: photos.at(0) }} />
       <Card.Content>
-        <Text>{name}</Text>
+        <Title>{name}</Title>
       </Card.Content>
     </RestaurantCard>
   );
