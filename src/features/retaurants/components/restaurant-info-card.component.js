@@ -1,6 +1,7 @@
 import { Card, Text } from "react-native-paper";
 import styled from "styled-components/native";
-
+import star from "../../../../assets/star";
+import { SvgXml } from "react-native-svg";
 const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
 `;
@@ -35,6 +36,7 @@ export const RestaurantInfoCard = ({ retaurant = {} }) => {
       <RestaurantCardCover key={name} source={{ uri: photos.at(0) }} />
       <Card.Content>
         <Title>{name}</Title>
+        <SvgXml xml={star} />
         <Address>{address}</Address>
       </Card.Content>
     </RestaurantCard>
