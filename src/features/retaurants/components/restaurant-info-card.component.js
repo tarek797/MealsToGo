@@ -6,7 +6,7 @@ const RestaurantCard = styled(Card)`
 `;
 const RestaurantCardCover = styled(Card.Cover)`
   background-color: ${(props) => props.theme.colors.bg.primary};
-  padding: 20px;
+  padding: ${(props) => props.theme.space.at(3)};
 `;
 
 export const RestaurantInfoCard = ({ retaurant = {} }) => {
