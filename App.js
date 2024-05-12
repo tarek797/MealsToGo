@@ -10,10 +10,27 @@ import { theme } from "./src/infrastructure/theme";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { SafeArea } from "./src/components/utility/safe-area.component";
 const SettingsScreen = () => <Text>Settings</Text>;
 const MapScreen = () => <Text>Map</Text>;
 const Tab = createBottomTabNavigator();
+
+const TAB_ICON = {
+  Restaurant: "restaurant",
+  Map: "map",
+  Settings: "settings",
+};
+const tabBarIcon =
+  (iconName) =>
+  ({ size, color }) => <Ionicons name={iconName} size={size} color={color} />;
+const screenOptions = ({ route }) => {
+  const iconName = TAB_ICON[route.name];
+  return {
+    tabBarIcon: tabBarIcon(iconName),
+  };
+};
+
 export default function App() {
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
@@ -27,10 +44,10 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <Tab.Navigator>
+          <Tab.Navigator screenOptions={screenOptions}>
             <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
             <Tab.Screen name="Map" component={MapScreen} />
+            <Tab.Screen name="Settings" component={SettingsScreen} />
           </Tab.Navigator>
         </NavigationContainer>
       </ThemeProvider>
