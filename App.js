@@ -12,6 +12,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { SafeArea } from "./src/components/utility/safe-area.component";
+
 const SettingsScreen = () => <Text>Settings</Text>;
 const MapScreen = () => <Text>Map</Text>;
 const Tab = createBottomTabNavigator();
