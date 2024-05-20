@@ -7,9 +7,8 @@ import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import { useContext } from "react";
 import { theme } from "../../../infrastructure/theme";
-const SearchContainer = styled.View`
-  padding: ${(props) => props.theme.space.at(3)};
-`;
+import Search from "../components/search.component";
+
 
 const RestaurantListContainer = styled.View`
   flex: 1;
@@ -38,9 +37,7 @@ export const RestaurantsScreen = () => {
     );
   return (
     <>
-      <SearchContainer>
-        <Searchbar />
-      </SearchContainer>
+      <Search/>
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {

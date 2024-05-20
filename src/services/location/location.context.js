@@ -9,19 +9,23 @@ export const LocationContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   function onSearch(searchKeyword) {
+    console.log(location)
     setIsLoading(true);
     setKeyword(searchKeyword);
+    if(!searchKeyword.length){
+      return 
+    }
     locationRequest(searchKeyword.toLowerCase())
       .then(locationTransform)
       .then((result) => {
         setIsLoading(false);
         setLocation(result);
-        console.log(result);
       })
       .catch((err) => {
         setIsLoading(false);
         setError(err);
-        console.log(err);
+        console.log(error)
+
       });
   }
 
