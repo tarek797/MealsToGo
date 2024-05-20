@@ -1,44 +1,42 @@
-import { ActivityIndicator, Searchbar } from "react-native-paper";
-import { FlatList, View } from "react-native";
-import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
+import React, { useContext } from "react";
+import { FlatList } from "react-native";
 import styled from "styled-components/native";
-import { Spacer } from "../../../components/spacer/spacer.component";
+import { ActivityIndicator } from "react-native-paper";
+
 import { SafeArea } from "../../../components/utility/safe-area.component";
+import { Spacer } from "../../../components/spacer/spacer.component";
+
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
-import { useContext } from "react";
-import { theme } from "../../../infrastructure/theme";
+
+import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import Search from "../components/search.component";
 
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16,
+  },
+})``;
 
-const RestaurantListContainer = styled.View`
-  flex: 1;
-  padding: ${(props) => props.theme.space.at(3)};
-  background-color: lightblue;
+const Loading = styled(ActivityIndicator)`
+  margin-left: -25px;
 `;
-
 const LoadingContainer = styled.View`
-  position: "absolute";
+  position: absolute;
   top: 50%;
+  left: 50%;
 `;
 
 export const RestaurantsScreen = () => {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
-  if (isLoading)
-    return (
-      <SafeArea>
-        <LoadingContainer>
-          <ActivityIndicator
-            size={50}
-            animating={true}
-            color={theme.colors.brand.secondary}
-          />
-        </LoadingContainer>
-      </SafeArea>
-    );
   return (
     <>
-      <Search/>
-      <FlatList
+      {isLoading && (
+        <LoadingContainer>
+          <Loading size={50} animating={true} color="blue" />
+        </LoadingContainer>
+      )}
+      <Search />
+      <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
           return (
@@ -48,7 +46,6 @@ export const RestaurantsScreen = () => {
           );
         }}
         keyExtractor={(item) => item.name}
-        contentContainerStyle={{ padding: 16 }}
       />
     </>
   );
