@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FlatList, Pressable } from "react-native";
+import { FlatList, Pressable, Touchable, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { ActivityIndicator } from "react-native-paper";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -36,7 +36,7 @@ export const RestaurantsScreen = ({ navigation }) => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <Pressable
+            <TouchableOpacity
               onPress={() => {
                 navigation.navigate("RestaurantDetail");
               }}
@@ -44,7 +44,7 @@ export const RestaurantsScreen = ({ navigation }) => {
               <Spacer position="bottom" size="large">
                 <RestaurantInfoCard restaurant={item} />
               </Spacer>
-            </Pressable>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={(item) => item.name}

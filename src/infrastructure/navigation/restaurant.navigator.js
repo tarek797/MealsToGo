@@ -6,7 +6,12 @@ const RestaurantStack = createStackNavigator();
 
 export const RestaurantsNavigator = () => {
   return (
-    <RestaurantStack.Navigator screenOptions={{ headerShown: false }}>
+    <RestaurantStack.Navigator
+      screenOptions={{
+        animation: "slide_from_bottom",
+        headerShown: false,
+      }}
+    >
       <RestaurantStack.Screen
         name="RestaurantsCards"
         component={RestaurantsScreen}
