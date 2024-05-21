@@ -11,10 +11,6 @@ const Search = () => {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
 
-  useEffect(()=>{
-    search(searchKeyword)
-  },[])
-
   return (
     <SearchContainer>
       <Searchbar
@@ -23,8 +19,8 @@ const Search = () => {
         onSubmitEditing={() => {
           search(searchKeyword);
         }}
-        onChangeText={(text)=>{
-          setSearchKeyword(text)
+        onChangeText={(text) => {
+          setSearchKeyword(text);
         }}
       />
     </SearchContainer>
