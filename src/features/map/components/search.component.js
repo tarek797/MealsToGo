@@ -5,6 +5,10 @@ import { LocationContext } from "../../../services/location/location.context";
 
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space.at(3)};
+  position: absolute;
+  z-index: 999;
+  top: 40px;
+  width: 100%;
 `;
 
 const Search = () => {
@@ -18,6 +22,7 @@ const Search = () => {
   return (
     <SearchContainer>
       <Searchbar
+        icon="map"
         placeholder="Search for a location"
         value={searchKeyword}
         onSubmitEditing={() => {
