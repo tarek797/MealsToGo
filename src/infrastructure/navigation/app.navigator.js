@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { RestaurantsNavigator } from "./restaurant.navigator";
+import { MapScreen } from "../../features/map/screens/map.screen";
 const SettingsScreen = () => <Text>Settings</Text>;
-const MapScreen = () => <Text>Map</Text>;
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
