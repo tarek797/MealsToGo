@@ -15,15 +15,12 @@ const CompactWebview = styled(WebView)`
   border-radius: 10px;
   width: 120px;
   height: 100px;
-  overflow: "hidden";
 `;
 
 const Item = styled.View`
   padding: 10px;
   max-width: 120px;
   align-items: center;
-  border-radius: 10px;
-  overflow: "hidden";
 `;
 
 const isAndroid = Platform.OS === "android";

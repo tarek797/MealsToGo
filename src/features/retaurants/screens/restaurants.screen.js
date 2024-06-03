@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FlatList, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { ActivityIndicator } from "react-native-paper";
@@ -8,6 +8,7 @@ import { RestaurantInfoCard } from "../components/restaurant-info-card.component
 import Search from "../components/search.component";
 import { theme } from "../../../infrastructure/theme";
 import { FavouritesContext } from "../../../services/favourites/favourites.context";
+import FavouritesBar from "../../../components/favourites/favourites-bar.component";
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
     padding: 16,
@@ -26,6 +27,7 @@ const LoadingContainer = styled.View`
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
   const { favourites } = useContext(FavouritesContext);
+  const [isFavouritesToggled, setIsFavouritesToggled] = useState(false);
   return (
     <>
       {isLoading && (
@@ -37,7 +39,16 @@ export const RestaurantsScreen = ({ navigation }) => {
           />
         </LoadingContainer>
       )}
-      <Search />
+      <Search
+        isFavouritesToggled={isFavouritesToggled}
+        onFavouritesToggled={() => setIsFavouritesToggled((prev) => !prev)}
+      />
+      {isFavouritesToggled && (
+        <FavouritesBar
+          favourites={favourites}
+          onNavigate={navigation.navigate}
+        />
+      )}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
