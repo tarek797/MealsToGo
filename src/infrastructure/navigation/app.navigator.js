@@ -1,4 +1,3 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -24,13 +23,11 @@ const screenOptions = ({ route }) => {
 
 const AppNavigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-        <Tab.Screen name="Map" component={MapScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator screenOptions={screenOptions}>
+      <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+      <Tab.Screen name="Map" component={MapScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
   );
 };
 export default AppNavigator;

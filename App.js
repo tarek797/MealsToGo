@@ -19,6 +19,7 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import { Navigation } from "./src/infrastructure/navigation";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { useEffect, useState } from "react";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDJMYplvc8lGotrFVJFxiwANU05W8XIHJc",
@@ -57,11 +58,11 @@ export default function App() {
   useEffect(() => {
     signInWithEmailAndPassword(auth, "tarek@gmail.com", "pass123@")
       .then((user) => {
-        console.log(user);
+        //console.log(user);
         setIsAuthenticated(true);
       })
       .catch((e) => {
-        console.log("error", e);
+        //console.log("error", e);
       });
   }, []);
 
@@ -73,18 +74,19 @@ export default function App() {
   });
 
   if (!oswaldLoaded || !latoLoaded) return null;
-  if (!isAuthenticated) return null;
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
-      </ThemeProvider>
+      <AuthenticationContextProvider>
+        <ThemeProvider theme={theme}>
+          <FavouritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavouritesContextProvider>
+        </ThemeProvider>
+      </AuthenticationContextProvider>
       <ExpoStatusBar style="auto" />
     </>
   );
