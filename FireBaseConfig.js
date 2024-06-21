@@ -3,7 +3,6 @@ import {
   getAuth,
   getReactNativePersistence,
   initializeAuth,
-  signInWithEmailAndPassword,
 } from "firebase/auth";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 
