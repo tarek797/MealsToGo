@@ -39,7 +39,6 @@ export const AuthenticationContextProvider = ({ children }) => {
         setError(e.message);
       });
   };
-
   return (
     <AuthenticationContext.Provider
       value={{
@@ -49,7 +48,6 @@ export const AuthenticationContextProvider = ({ children }) => {
         error,
         onLogin,
         onRegister,
-        isAuthenticated: false,
       }}
     >
       {children}
