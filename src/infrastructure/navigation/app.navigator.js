@@ -1,9 +1,22 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text } from "react-native";
+import { Text, Button } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { RestaurantsNavigator } from "./restaurant.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
-const SettingsScreen = () => <Text>Settings</Text>;
+import { useContext } from "react";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { SafeArea } from "../../components/utility/safe-area.component";
+
+const Settings = () => {
+  const { onLogout } = useContext(AuthenticationContext);
+  return (
+    <SafeArea>
+      <Text>Settings</Text>
+      <Button title="logout" onPress={() => onLogout()} />
+    </SafeArea>
+  );
+};
+
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
@@ -26,7 +39,7 @@ const AppNavigator = () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
       <Tab.Screen name="Map" component={MapScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Settings" component={Settings} />
     </Tab.Navigator>
   );
 };

@@ -1,5 +1,7 @@
 import { useState, createContext } from "react";
 import { loginRequest, regeiterRequest } from "./authentication.service";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { FIREBASE_AUTH } from "../../../FireBaseConfig";
 
 export const AuthenticationContext = createContext();
 
@@ -7,6 +9,15 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState([]);
+
+  onAuthStateChanged(FIREBASE_AUTH, (usr) => {
+    if (usr) {
+      setUser(usr);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  });
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -39,6 +50,11 @@ export const AuthenticationContextProvider = ({ children }) => {
         setError(e.message);
       });
   };
+
+  const onLogout = () => {
+    setUser(null);
+    signOut(FIREBASE_AUTH);
+  };
   return (
     <AuthenticationContext.Provider
       value={{
@@ -48,6 +64,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         error,
         onLogin,
         onRegister,
+        onLogout,
       }}
     >
       {children}
