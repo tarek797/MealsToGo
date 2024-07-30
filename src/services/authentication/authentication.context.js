@@ -52,8 +52,10 @@ export const AuthenticationContextProvider = ({ children }) => {
   };
 
   const onLogout = () => {
-    setUser(null);
-    signOut(FIREBASE_AUTH);
+    signOut(FIREBASE_AUTH).then(() => {
+      setUser(null);
+      setError(null);
+    });
   };
   return (
     <AuthenticationContext.Provider
